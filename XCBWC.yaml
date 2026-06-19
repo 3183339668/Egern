@@ -1,6 +1,7 @@
 name: 小蚕霸王餐
 description: 自动签到与Token获取
 author: Sliverkiss
+icon: https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/XiaoCan.png
 compat_arguments:
   enableToken: 'true'
   enableCheckin: 'true'
