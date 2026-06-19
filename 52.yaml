@@ -10,7 +10,7 @@ scriptings:
       name: 1.获取Cookie (用完请关闭)
       match: ^https:\/\/www\.52pojie\.cn\/home\.php\?
       script_url: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js
-      timeout: 20
+      timeout: 10
       enabled: true
   - schedule:
       name: 2.定时签到
