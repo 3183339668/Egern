@@ -1,0 +1,42 @@
+name: 小蚕霸王餐
+description: 自动签到与Token获取
+author: Sliverkiss
+compat_arguments:
+  enableToken: 'true'
+  enableCheckin: 'true'
+  cron: '30 8 * * *'
+  timeout: '60'
+compat_arguments_schema:
+  enableToken:
+    name: 开启Token获取
+    options: ['true', 'false']
+    default_value: 'true'
+  enableCheckin:
+    name: 开启签到
+    options: ['true', 'false']
+    default_value: 'true'
+  cron:
+    name: 自定义签到时间 (Cron)
+    description: 格式：分 时 天 月 周，例如 30 8 * * *
+    default_value: '30 8 * * *'
+  timeout:
+    name: 超时时间 (秒)
+    description: 请求超时限制
+    default_value: '60'
+scriptings:
+  - http_response:
+      name: 小蚕获取Token
+      match: ^https:\/\/gw\.xiaocantech\.com\/rpc
+      script_url: https://gist.githubusercontent.com/Sliverkiss/27c601d97a3f8960b212e5cac5b6c470/raw/xcbwc.js
+      body_required: true
+      env:
+        _compat.$argument: '{"enableToken":true,"enableCheckin":true,"cron":"30 8 * * *","timeout":60}'
+  - schedule:
+      name: 小蚕时签到
+      cron: 30 8 * * *
+      script_url: https://gist.githubusercontent.com/Sliverkiss/27c601d97a3f8960b212e5cac5b6c470/raw/xcbwc.js
+      timeout: 60
+mitm:
+  hostnames:
+    includes:
+      - gw.xiaocantech.com
