@@ -1,11 +1,9 @@
-name: 吾爱破解
-description: 自动签到与Cookie获取 (通过“配置”面板控制开关)
+name: 吾爱破解 (整合版)
+description: 自动签到与Cookie获取 (可在配置面板中开启/关闭)
 author: Yuheng0101
-# 定义开关变量
 compat_arguments:
   enableCookie: 'true'
   enableCheckin: 'true'
-# 定义开关界面
 compat_arguments_schema:
   enableCookie:
     name: 开启Cookie获取
@@ -22,10 +20,10 @@ mitm:
 scriptings:
   - http_request:
       name: 1.获取Cookie
-      match: ^https:\/\/www\.52pojie\.cn\/home\.php\?
+      match: ^https:\/\/www\.52pojie\.cn\/
       script_url: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js
+      body_required: false
       timeout: 20
-      # 关联开关变量
       env:
         _compat.$argument: '{"enableCookie":true}'
   - schedule:
@@ -33,6 +31,5 @@ scriptings:
       cron: 0 9 * * *
       script_url: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js
       timeout: 20
-      # 关联开关变量
       env:
         _compat.$argument: '{"enableCheckin":true}'
