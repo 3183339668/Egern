@@ -1,44 +1,20 @@
-name: 吾爱破解 (52pojie)
-description: 自动签到与Cookie获取 (支持界面化参数与自定义时间)
+name: 吾爱破解
+description: 吾爱破解签到与Cookie获取 (开关在下方的脚本列表中)
 author: Yuheng0101
-icon:https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/52pojie.png
-compat_arguments:
-  enableCookie: 'true'
-  enableCheckin: 'true'
-  cron: '0 9 * * *'
-  timeout: '10'
-compat_arguments_schema:
-  enableCookie:
-    name: 开启Cookie获取
-    description: 开启后请在浏览器访问吾爱破解首页触发获取
-    default_value: 'true'
-    options: ['true', 'false']
-  enableCheckin:
-    name: 开启签到
-    default_value: 'true'
-    options: ['true', 'false']
-  cron:
-    name: 自定义签到时间 (Cron)
-    default_value: '0 9 * * *'
-  timeout:
-    name: 超时时间 (秒)
-    default_value: '10'
-scriptings:
-  - http_request:
-      name: 1.获取Cookie
-      match: ^https:\/\/www\.52pojie\.cn\/home\.php\?
-      script_url: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js
-      body_required: false
-      env:
-        _compat.$argument: '{"enableCookie":true,"enableCheckin":true,"cron":"0 9 * * *","timeout":10}'
-  - schedule:
-      name: 2.定时签到
-      cron: 0 9 * * *
-      script_url: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js
-      timeout: 10
-      env:
-        _compat.$argument: '{"enableCookie":true,"enableCheckin":true,"cron":"0 9 * * *","timeout":10}'
 mitm:
   hostnames:
     includes:
       - www.52pojie.cn
+scriptings:
+  - http_request:
+      name: 1.获取Cookie (用完请关闭)
+      match: ^https:\/\/www\.52pojie\.cn\/home\.php\?
+      script_url: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js
+      timeout: 20
+      enabled: true
+  - schedule:
+      name: 2.定时签到
+      cron: 0 9 * * *
+      script_url: https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/52pojie.js
+      timeout: 20
+      enabled: true
