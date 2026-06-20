@@ -10,7 +10,7 @@ compat_arguments:
   QDREADER_LOTTERY_ENABLE: 'ture'
   QDREADER_WEEKLY_EXCHANGE_ENABLE: 'ture'
   QDREADER_CHAPTER_CARD_ENABLE: 'ture'
-  QDREADER_MESSAGE_BOX_ENABLE: 'false'
+  QDREADER_MESSAGE_BOX_ENABLE: 'ture'
 compat_arguments_schema:
   CAPTURE_ENABLE:
     name: 是否开启抓取重写
