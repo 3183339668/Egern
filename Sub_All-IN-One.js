@@ -1,5 +1,7 @@
 /**
- * Sub-Store 聚合脚本
+ * Sub-Store 精准聚合脚本
+ * 功能：强制唯一标签，合并去重
+ * 作者：Patatooo TG@Hankin_He
  */
 
 function mergeLoonPlugins(files) {
@@ -39,7 +41,7 @@ function mergeLoonPlugins(files) {
             if (/^\[Script\]/i.test(trimmed)) { currentSection = "Script"; continue; }
             if (/^\[MitM\]/i.test(trimmed)) { currentSection = "MitM"; continue; }
             
-            // 遇到不支持的标签（如 https://ahrefs.com/writing-tools/paragraph-rewriter），暂时挂起
+            // 遇到不支持的标签（如 [URL Rewrite]），暂时挂起
             if (/^\[.*\]/.test(trimmed)) { currentSection = null; continue; } 
 
             // 处理 MitM 域名的提取与绝对去重
@@ -67,7 +69,9 @@ function mergeLoonPlugins(files) {
     let output = [];
     output.push("#!name=聚合去广告大师");
     output.push("#!desc=由 Sub-Store 自动提取合并，极大提升 Egern 加载速度");
-    output.push("#!author=Patatooo@Hankin_He"); 
+    output.push("#!author=Patatooo");                 
+    output.push("#!tg=TG@Hankin_He");                 
+    output.push("#!icon=https://q1.qlogo.cn/g?b=qq&nk=3183339668&s=100"); // 👈 你的专属头像图标
     output.push("");
 
     if (sections.Rule.length > 0) {
