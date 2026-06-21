@@ -70,7 +70,7 @@ function mergeLoonPlugins(files) {
     output.push("#!name=聚合去广告大师");
     output.push("#!desc=由 Sub-Store 自动提取合并，极大提升 Egern 加载速度");
     output.push("#!author=Patatooo｜TG@Hankin_He");                              
-    output.push("#!icon=https://github.com/3183339668/Egern/raw/refs/heads/main/IMG_7064.jpeg"); // 👈 你的专属头像图标
+    output.push("#!icon=https://github.com/3183339668/Egern/raw/refs/heads/main/IMG_7064.jpeg");
     output.push("");
 
     if (sections.Rule.length > 0) {
