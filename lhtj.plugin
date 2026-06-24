@@ -1,18 +1,12 @@
 #!name = 龙湖天街
-#!desc = 龙湖天街签到 + Cookie获取
-#!openUrl = https://github.com/leiyiyan/resource
-#!author = ChatGPT
-
-[Argument]
-GetCookie = false
+#!desc = 龙湖天街签到
+#!author = Patatooo
+#!icon = https://raw.githubusercontent.com/leiyiyan/resource/main/icons/lhtj.png
 
 [MITM]
 hostname = gw2c-hw-open.longfor.com
 
 [Script]
+http-request ^https?:\/\/gw2c\-hw\-open\.longfor\.com\/lmarketing\-task\-api\-mvc\-prod\/openapi\/task\/v1\/signature\/clock script-path=https://raw.githubusercontent.com/leiyiyan/resource/main/script/lhtj/lhtj.js, tag=龙湖天街获取Cookie, argument=获取Cookie
 
-# 获取 Cookie
-http-request ^https?:\/\/gw2c\-hw\-open\.longfor\.com\/lmarketing\-task\-api\-mvc\-prod\/openapi\/task\/v1\/signature\/clock script-path=https://raw.githubusercontent.com/leiyiyan/resource/main/script/lhtj/lhtj.js, tag=龙湖天街获取Cookie, argument=GetCookie
-
-# 每天08:00执行
 cron "0 8 * * *" script-path=https://raw.githubusercontent.com/leiyiyan/resource/main/script/lhtj/lhtj.js, tag=龙湖天街签到
