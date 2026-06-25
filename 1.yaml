@@ -1,0 +1,44 @@
+vif_only: false
+dns:
+  bootstrap:
+  - 119.29.29.29
+  - 223.5.5.5
+  proxy_nameservers:
+  - 119.29.29.29
+  - 223.5.5.5
+policy_groups:
+- select:
+    name: PROXY
+    policies:
+    - 订阅
+    flatten: true
+    hidden: false
+- external:
+    name: 订阅
+    type: fallback
+rules:
+- ip_cidr:
+    match: 192.168.0.0/16
+    policy: DIRECT
+- ip_cidr:
+    match: 10.0.0.0/8
+    policy: DIRECT
+- ip_cidr:
+    match: 127.0.0.0/8
+    policy: DIRECT
+- ip_cidr:
+    match: 172.16.0.0/12
+    policy: DIRECT
+- ip_cidr:
+    match: 192.128.0.0/16
+    policy: DIRECT
+- ip_cidr:
+    match: 224.0.0.0/24
+    policy: DIRECT
+- geoip:
+    match: CN
+    policy: DIRECT
+- default:
+    policy: PROXY
+default_subscription_group: 订阅
+default_proxy_group: PROXY
